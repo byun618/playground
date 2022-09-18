@@ -13,14 +13,20 @@ a {
 
 * {
   box-sizing: border-box;
+
+  /* iOS 웹뷰에서 요소 클릭 시 배경색 지정 해제 */
+  -webkit-tap-highlight-color: transparent;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+/* 
+ * input 태그 제외
+ * 길게 터치하여 요소 선택 비활성화
+ */
+*:not(input, textarea) {
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
