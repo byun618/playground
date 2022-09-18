@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { useRouter } from 'next/router'
 import { Logo } from '../public'
 
 const Wrapper = styled.div``
@@ -20,9 +21,15 @@ const SubTitle = styled.div`
 `
 
 const Header = () => {
+  const router = useRouter()
+
   return (
     <Wrapper>
-      <Logo disabled />
+      <Logo
+        onClick={() => {
+          router.replace('/')
+        }}
+      />
       <Title>로그인</Title>
       <SubTitle>놀아보자!</SubTitle>
     </Wrapper>

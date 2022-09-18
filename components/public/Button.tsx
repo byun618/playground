@@ -3,7 +3,7 @@ import { debounce } from 'lodash'
 import { CSSProperties, MouseEventHandler, ReactNode, RefObject } from 'react'
 
 export interface ButtonProps {
-  onClick: MouseEventHandler<HTMLButtonElement>
+  onClick?: MouseEventHandler<HTMLButtonElement>
   children: ReactNode
   disabled?: boolean
   style?: object

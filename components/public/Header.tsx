@@ -41,11 +41,7 @@ const Header = () => {
 
   return (
     <Wrapper>
-      <Logo
-        onClick={() => {
-          router.replace('/')
-        }}
-      />
+      <Logo />
       <Menus>Menu</Menus>
       <LoginButton
         onClick={() => {
