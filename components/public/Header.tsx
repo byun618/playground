@@ -1,7 +1,8 @@
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
+import useToken from '../../hooks/useToken'
 import { HEADER_HEIGHT } from '../../lib/constants'
-import Button from './Button'
+import CustomButton from './Button'
 import Logo from './Logo'
 
 const Wrapper = styled.div`
@@ -25,7 +26,7 @@ const Menus = styled.div`
   padding: 0 20px;
 `
 
-const LoginButton = styled(Button)`
+const Button = styled(CustomButton)`
   border: 1px solid #4c5865;
   border-radius: 20px;
 
@@ -39,17 +40,24 @@ const LoginButton = styled(Button)`
 const Header = () => {
   const router = useRouter()
 
+  const { token } = useToken()
+
+  const onClickButton = () => {
+    if (token) {
+    } else {
+      router.push('/login')
+    }
+  }
+
   return (
     <Wrapper>
       <Logo />
       <Menus>Menu</Menus>
-      <LoginButton
-        onClick={() => {
-          router.push('/login')
-        }}
-      >
-        로그인
-      </LoginButton>
+      {token !== undefined && (
+        <Button onClick={onClickButton}>
+          {token ? '마이페이지' : '로그인'}
+        </Button>
+      )}
     </Wrapper>
   )
 }

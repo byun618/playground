@@ -1,6 +1,13 @@
 import styled from '@emotion/styled'
+import { useRouter } from 'next/router'
 import { useRecoilValue } from 'recoil'
-import { isAbleToLoginState } from '../../stores/login'
+import useToken from '../../hooks/useToken'
+import api from '../../lib/api'
+import {
+  emailState,
+  isAbleToLoginState,
+  passwordState,
+} from '../../stores/login'
 import { Button } from '../public'
 
 const Wrapper = styled.div`
@@ -25,16 +32,31 @@ const LoginButton = styled(Button)<{ disabled: boolean }>`
 `
 
 const Footer = () => {
+  const router = useRouter()
+
   const isAbleToLogin = useRecoilValue(isAbleToLoginState)
+  const email = useRecoilValue(emailState)
+  const password = useRecoilValue(passwordState)
+  const { storeToken } = useToken()
+
+  const onClickLogin = async () => {
+    try {
+      const { data } = await api.post<{ access_token: string }>('/auth/login', {
+        email,
+        password,
+      })
+
+      storeToken(data.access_token)
+
+      router.replace('/')
+    } catch (err: any) {
+      alert(err.response.data.message)
+    }
+  }
 
   return (
     <Wrapper>
-      <LoginButton
-        onClick={() => {
-          console.log(1)
-        }}
-        disabled={!isAbleToLogin}
-      >
+      <LoginButton onClick={onClickLogin} disabled={!isAbleToLogin}>
         로그인
       </LoginButton>
     </Wrapper>
