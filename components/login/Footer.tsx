@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
-import { useRecoilValue } from 'recoil'
+import { useRecoilValue, useResetRecoilState } from 'recoil'
 import useToken from '../../hooks/useToken'
 import api from '../../lib/api'
 import {
@@ -34,10 +34,13 @@ const LoginButton = styled(Button)<{ disabled: boolean }>`
 const Footer = () => {
   const router = useRouter()
 
+  const { storeToken } = useToken()
+
   const isAbleToLogin = useRecoilValue(isAbleToLoginState)
   const email = useRecoilValue(emailState)
   const password = useRecoilValue(passwordState)
-  const { storeToken } = useToken()
+  const resetEmail = useResetRecoilState(emailState)
+  const resetPassword = useResetRecoilState(passwordState)
 
   const onClickLogin = async () => {
     try {
@@ -47,6 +50,9 @@ const Footer = () => {
       })
 
       storeToken(data.access_token)
+
+      resetEmail()
+      resetPassword()
 
       router.replace('/')
     } catch (err: any) {
