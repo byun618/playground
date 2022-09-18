@@ -19,8 +19,7 @@ const Content = styled.div`
   flex-direction: column;
   flex-grow: 1;
 
-  // 제거 예정
-  border: 1px solid blue;
+  background-color: #f5f5f5;
 `
 
 const Page = (pageProps: PageProps) => {
