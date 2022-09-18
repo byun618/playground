@@ -2,6 +2,51 @@
 
 **이것 저것 해보는 웹 사이트를 만들자!!**
 
+### **2022-09-18**
+
+- Prettier
+
+```sh
+yarn add --dev prettier
+```
+
+- ESLint
+
+```sh
+yarn add --dev @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-prettier eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-eslint-comments eslint-plugin-import eslint-plugin-prettier
+```
+
+```js
+module.exports = {
+  extends: [
+    'next/core-web-vitals',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:eslint-comments/recommended',
+    'plugin:import/recommended',
+    'plugin:import/typescript',
+    'plugin:prettier/recommended',
+  ],
+  rules: {
+    '@next/next/no-img-element': 'off',
+    'eslint-disable-next-line': 'off',
+    'react/display-name': 'off',
+    'react-hooks/exhaustive-deps': [
+      'warn',
+      {
+        additionalHooks: 'useRecoilCallback',
+      },
+    ],
+  },
+  ignorePatterns: ['node_modules/', 'dist/', 'build/', '.yarn/'],
+}
+```
+
+- 기본 패키지 설치
+
+```sh
+yarn add @emotion/react @emotion/styled axios moment-timezone react-query recoil sharp universal-cookie
+```
+
 ---
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
