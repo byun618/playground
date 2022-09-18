@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
+import { useRouter } from 'next/router'
 import { HEADER_HEIGHT } from '../../lib/constants'
-import Image from './Image'
-import Logo from '../../assets/png/logo.png'
 import Button from './Button'
+import Logo from './Logo'
 
 const Wrapper = styled.div`
   display: flex;
@@ -26,7 +26,7 @@ const Menus = styled.div`
 `
 
 const LoginButton = styled(Button)`
-  border: 1px solid #333333;
+  border: 1px solid #4c5865;
   border-radius: 20px;
 
   padding: 8px 20px;
@@ -34,18 +34,22 @@ const LoginButton = styled(Button)`
   font-weight: 700;
   font-size: 12px;
   line-height: 14px;
-
-  color: #333333;
 `
 
 const Header = () => {
+  const router = useRouter()
+
   return (
     <Wrapper>
-      <Image src={Logo} width={205} height={32} alt="logo" />
+      <Logo
+        onClick={() => {
+          router.replace('/')
+        }}
+      />
       <Menus>Menu</Menus>
       <LoginButton
         onClick={() => {
-          console.log(1)
+          router.push('/login')
         }}
       >
         로그인

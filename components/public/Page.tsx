@@ -1,9 +1,12 @@
 import styled from '@emotion/styled'
-import type { ReactNode } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
 import Header from './Header'
 
 interface PageProps {
   children: ReactNode
+  noHeader?: boolean
+  backgroundColor?: string
+  style?: CSSProperties
 }
 
 const Wrapper = styled.div`
@@ -14,21 +17,28 @@ const Wrapper = styled.div`
   flex-direction: column;
 `
 
-const Content = styled.div`
+const Content = styled.div<Partial<PageProps>>`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 
-  background-color: #f5f5f5;
+  background-color: ${({ backgroundColor }) => backgroundColor};
 `
 
 const Page = (pageProps: PageProps) => {
-  const { children } = pageProps
+  const {
+    children,
+    noHeader = false,
+    backgroundColor = '#ffffff',
+    style,
+  } = pageProps
 
   return (
     <Wrapper>
-      <Header />
-      <Content>{children}</Content>
+      {!noHeader && <Header />}
+      <Content style={style} backgroundColor={backgroundColor}>
+        {children}
+      </Content>
     </Wrapper>
   )
 }
