@@ -10,9 +10,17 @@
     "format": "prettier --write \"./**/*.ts\" \"./**/*.tsx\""
   },
   "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "axios": "^0.27.2",
+    "moment-timezone": "^0.5.37",
     "next": "12.3.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-query": "^3.39.2",
+    "recoil": "^0.7.5",
+    "sharp": "^0.31.0",
+    "universal-cookie": "^4.0.4"
   },
   "devDependencies": {
     "@types/node": "18.7.18",
