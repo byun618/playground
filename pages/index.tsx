@@ -5,7 +5,7 @@ import useToken from '../hooks/useToken'
 const Home: NextPage = () => {
   const { token } = useToken()
 
-  return <Page>{token ? '로그인 됨' : '안됨'}</Page>
+  return <Page>{token ? '됨' : '안됨'}</Page>
 }
 
 export default Home
