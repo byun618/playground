@@ -1,6 +1,11 @@
 import styled from '@emotion/styled'
 import type { NextPage } from 'next'
-import { Header, LogoutButton } from '../../components/my-page'
+import {
+  Header,
+  LoginInfo,
+  LogoutButton,
+  PhoneInfo,
+} from '../../components/my-page'
 import { Page } from '../../components/public'
 
 const Wrapper = styled.div`
@@ -15,6 +20,12 @@ const Wrapper = styled.div`
   height: 100%;
 `
 
+const Contents = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+`
+
 const MyPage: NextPage = () => {
   return (
     <Page
@@ -24,11 +35,10 @@ const MyPage: NextPage = () => {
     >
       <Wrapper>
         <Header />
-        <div
-          style={{
-            flexGrow: 1,
-          }}
-        ></div>
+        <Contents>
+          <LoginInfo />
+          <PhoneInfo />
+        </Contents>
         <LogoutButton />
       </Wrapper>
     </Page>

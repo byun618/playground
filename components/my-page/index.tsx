@@ -1,2 +1,5 @@
 export { default as Header } from './Header'
 export { default as LogoutButton } from './LogoutButton'
+export { default as LoginInfo } from './LoginInfo'
+export { default as LeftLabel } from './LeftLabel'
+export { default as PhoneInfo } from './PhoneInfo'

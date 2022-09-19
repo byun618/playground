@@ -4,6 +4,7 @@ interface Me {
   id: number
   email: string
   name?: string
+  phone?: string
 }
 
 export const fetchMe = async () => {
