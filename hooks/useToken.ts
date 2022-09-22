@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { setHeaderToken } from '../lib/api'
+import { removeHeaderToken, setHeaderToken } from '../lib/api'
 
 const useToken = () => {
   const [token, setToken] = useState<undefined | null | string>(undefined)
@@ -24,6 +24,7 @@ const useToken = () => {
 
   const removeToken = () => {
     localStorage.removeItem('token')
+    removeHeaderToken()
     setToken(null)
   }
 

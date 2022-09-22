@@ -1,6 +1,5 @@
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
-import useMe from '../../hooks/useMe'
 import useToken from '../../hooks/useToken'
 import { Button as CustomButton } from '../public'
 

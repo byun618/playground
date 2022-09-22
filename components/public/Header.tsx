@@ -1,7 +1,5 @@
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
-import useMe from '../../hooks/useMe'
 import useToken from '../../hooks/useToken'
 import { HEADER_HEIGHT } from '../../lib/constants'
 import CustomButton from './Button'
@@ -18,7 +16,7 @@ const Wrapper = styled.div`
   height: ${HEADER_HEIGHT}px;
 `
 
-const Menus = styled.div`
+const Menu = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -26,6 +24,10 @@ const Menus = styled.div`
   flex-grow: 1;
 
   padding: 0 20px;
+
+  & > :not(:first-of-type) {
+    margin-left: 15px;
+  }
 `
 
 const Button = styled(CustomButton)`
@@ -39,8 +41,25 @@ const Button = styled(CustomButton)`
   line-height: 14px;
 `
 
+const MenuButton = styled(CustomButton)`
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+
+  color: #4c5965;
+`
+
 const Header = () => {
   const router = useRouter()
+
+  const menu = [
+    {
+      text: 'About Me',
+      onClick: () => {
+        console.log(1)
+      },
+    },
+  ]
 
   const { token } = useToken()
 
@@ -55,7 +74,13 @@ const Header = () => {
   return (
     <Wrapper>
       <Logo />
-      <Menus>Menu</Menus>
+      <Menu>
+        {menu.map(({ text, onClick }, index) => (
+          <div key={index}>
+            <MenuButton onClick={onClick}>{text}</MenuButton>
+          </div>
+        ))}
+      </Menu>
       {token !== undefined && (
         <Button onClick={onClickButton}>
           {token ? '마이 페이지' : '로그인'}
