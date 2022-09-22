@@ -1,11 +1,11 @@
 import type { NextPage } from 'next'
 import { Page } from '../components/public'
-import useToken from '../hooks/useToken'
+import useMe from '../hooks/useMe'
 
 const Home: NextPage = () => {
-  const { token } = useToken()
+  const me = useMe()
 
-  return <Page>{token ? '됨' : '안됨'}</Page>
+  return <Page>{me ? '됨' : '안됨'}</Page>
 }
 
 export default Home

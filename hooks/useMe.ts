@@ -12,9 +12,13 @@ interface Me {
 const useMe = () => {
   const { token } = useToken()
 
-  const { data, isSuccess } = useQuery<Me>(['fetchMe', token], fetchMe, {
+  const { data, isSuccess, error } = useQuery<Me>(['fetchMe', token], fetchMe, {
     enabled: Boolean(token),
   })
+
+  if (error) {
+    window.localStorage.removeItem('token')
+  }
 
   return isSuccess ? data : null
 }

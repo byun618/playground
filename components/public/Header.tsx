@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
+import useMe from '../../hooks/useMe'
 import useToken from '../../hooks/useToken'
 import { HEADER_HEIGHT } from '../../lib/constants'
 import CustomButton from './Button'
@@ -62,9 +63,10 @@ const Header = () => {
   ]
 
   const { token } = useToken()
+  const me = useMe()
 
   const onClickButton = () => {
-    if (token) {
+    if (me) {
       router.push('/my-page')
     } else {
       router.push('/login')
@@ -82,9 +84,7 @@ const Header = () => {
         ))}
       </Menu>
       {token !== undefined && (
-        <Button onClick={onClickButton}>
-          {token ? '마이 페이지' : '로그인'}
-        </Button>
+        <Button onClick={onClickButton}>{me ? '마이 페이지' : '로그인'}</Button>
       )}
     </Wrapper>
   )
