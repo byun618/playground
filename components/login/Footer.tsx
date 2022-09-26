@@ -44,12 +44,14 @@ const Footer = () => {
 
   const onClickLogin = async () => {
     try {
-      const { data } = await api.post<{ access_token: string }>('/auth/login', {
+      const {
+        data: { token },
+      } = await api.post<{ token: string }>('/auth/login', {
         email,
         password,
       })
 
-      storeToken(data.access_token)
+      storeToken(token)
 
       resetEmail()
       resetPassword()
