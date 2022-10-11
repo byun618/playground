@@ -27,7 +27,7 @@ const Menu = styled.div`
   padding: 0 20px;
 
   & > :not(:first-of-type) {
-    margin-left: 15px;
+    margin-left: 20px;
   }
 `
 
@@ -58,6 +58,12 @@ const Header = () => {
       text: 'About Me',
       onClick: () => {
         console.log(1)
+      },
+    },
+    {
+      text: 'My Trade',
+      onClick: () => {
+        router.push('/my-trade')
       },
     },
   ]
