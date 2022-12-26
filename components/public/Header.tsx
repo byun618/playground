@@ -1,8 +1,6 @@
 import styled from '@emotion/styled'
 import { NextRouter } from 'next/router'
-import LogoImage from '../../assets/png/logo.png'
-import Button from './Button'
-import Image from './Image'
+import Logo from './Logo'
 
 type HeaderButtonTypes = 'back' | 'home'
 
@@ -37,19 +35,7 @@ const Wrapper = styled.div`
  */
 
 const Header = ({ router, title, left, right }: HeaderProps) => {
-  return (
-    <Wrapper>
-      {router.asPath === '/' && (
-        <Button
-          onClick={() => {
-            //
-          }}
-        >
-          <Image src={LogoImage} alt="logo" width={205} height={32} />
-        </Button>
-      )}
-    </Wrapper>
-  )
+  return <Wrapper>{router.asPath === '/' && <Logo />}</Wrapper>
 }
 
 export default Header
