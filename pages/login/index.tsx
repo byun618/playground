@@ -20,7 +20,6 @@ const Wrapper = styled.div`
 const Login: NextPage = () => {
   return (
     <Page
-      noHeader
       style={{
         alignItems: 'center',
       }}
