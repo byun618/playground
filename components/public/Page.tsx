@@ -28,7 +28,7 @@ const Content = styled.div<ContentProps>`
   /**
    * @todo 필요시, full 옵션 추가
    */
-  padding: 5px 15px;
+  padding: 16px 16px;
   margin-top: ${({ headerHeight }) => headerHeight}px;
 `
 

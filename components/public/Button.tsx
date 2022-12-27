@@ -10,6 +10,7 @@ export interface ButtonProps {
   className?: string
   buttonRef?: RefObject<HTMLButtonElement>
   allowTransform?: boolean
+  allowOverlay?: boolean
 }
 
 interface OverlayBoxStyleType {
@@ -39,9 +40,9 @@ const Wrapper = styled.button<Partial<ButtonProps>>`
 
     & > .overlayBox {
       background-color: ${(props) =>
-        props.allowTransform ? `transparent` : `#fff`};
+        props.allowOverlay ? `transparent` : `#fff`};
 
-      opacity: ${(props) => (props.allowTransform ? 1 : 0.2)};
+      opacity: ${(props) => (props.allowOverlay ? 1 : 0.2)};
     }
   }
 `
@@ -66,6 +67,7 @@ const Button = (props: CSSProperties & ButtonProps) => {
     className,
     buttonRef,
     allowTransform = true,
+    allowOverlay = true,
   }: ButtonProps = props
 
   const handleClick = debounce(
@@ -89,6 +91,7 @@ const Button = (props: CSSProperties & ButtonProps) => {
       style={style}
       ref={buttonRef}
       allowTransform={allowTransform}
+      allowOverlay={allowOverlay}
     >
       {children}
       <OverlayBox className="overlayBox" allowTransform={allowTransform} />
