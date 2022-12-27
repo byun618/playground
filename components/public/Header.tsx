@@ -36,7 +36,9 @@ const Wrapper = styled.div`
  */
 
 const Header = ({ router, title, left, right }: HeaderProps) => {
-  return <Wrapper>{router.asPath === '/' && <Logo />}</Wrapper>
+  return (
+    <Wrapper>{['/', '/login'].includes(router.asPath) && <Logo />}</Wrapper>
+  )
 }
 
 export default Header
