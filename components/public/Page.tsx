@@ -7,6 +7,7 @@ import { HeaderProps } from './Header'
 interface PageProps {
   children: ReactNode
   header?: HeaderProps
+  full?: boolean
   backgroundColor?: string
 }
 
@@ -25,15 +26,12 @@ const Content = styled.div<ContentProps>`
   flex-direction: column;
   flex-grow: 1;
 
-  /**
-   * @todo 필요시, full 옵션 추가
-   */
-  padding: 16px 16px;
+  padding: ${({ full }) => (full ? '0' : '16px')};
   margin-top: ${({ headerHeight }) => headerHeight}px;
 `
 
 const Page = (pageProps: PageProps) => {
-  const { children, header } = pageProps
+  const { children, header, full } = pageProps
 
   const headerRef = useRef<HTMLInputElement>(null)
 
@@ -51,6 +49,7 @@ const Page = (pageProps: PageProps) => {
         headerHeight={
           header ? headerRef.current?.clientHeight ?? HEADER_HEIGHT : 0
         }
+        full={full}
       >
         {children}
       </Content>
