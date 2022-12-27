@@ -1,16 +1,20 @@
 import styled from '@emotion/styled'
 import { debounce } from 'lodash'
-import { CSSProperties, MouseEventHandler, ReactNode, RefObject } from 'react'
+import React, {
+  CSSProperties,
+  LegacyRef,
+  MouseEventHandler,
+  ReactNode,
+} from 'react'
 
 export interface ButtonProps {
-  onClick?: MouseEventHandler<HTMLButtonElement>
+  key?: string
+  onClick: MouseEventHandler<HTMLButtonElement>
   children: ReactNode
   disabled?: boolean
   style?: object
   className?: string
-  buttonRef?: RefObject<HTMLButtonElement>
   allowTransform?: boolean
-  allowOverlay?: boolean
 }
 
 interface OverlayBoxStyleType {
@@ -37,66 +41,46 @@ const Wrapper = styled.button<Partial<ButtonProps>>`
       props.allowTransform ? `scale(0.99)` : null} !important;
 
     opacity: ${(props) => (props.allowTransform ? 0.8 : 1)} !important;
-
-    & > .overlayBox {
-      background-color: ${(props) =>
-        props.allowOverlay ? `transparent` : `#fff`};
-
-      opacity: ${(props) => (props.allowOverlay ? 1 : 0.2)};
-    }
   }
 `
 
-const OverlayBox = styled.div<OverlayBoxStyleType>`
-  width: 100%;
-  height: 100%;
+const Button = React.forwardRef(
+  (props: CSSProperties & ButtonProps, ref: LegacyRef<HTMLButtonElement>) => {
+    const {
+      onClick,
+      disabled,
+      style,
+      children,
+      className,
+      allowTransform = true,
+    }: ButtonProps = props
 
-  position: absolute;
-  left: 0;
-  top: 0;
+    const handleClick = debounce(
+      (e) => {
+        if (onClick && !disabled) {
+          onClick(e)
+        }
+      },
+      500,
+      {
+        leading: true,
+        trailing: false,
+      },
+    )
 
-  background-color: transparent;
-`
-
-const Button = (props: CSSProperties & ButtonProps) => {
-  const {
-    onClick,
-    disabled,
-    style,
-    children,
-    className,
-    buttonRef,
-    allowTransform = true,
-    allowOverlay = true,
-  }: ButtonProps = props
-
-  const handleClick = debounce(
-    (e) => {
-      if (onClick && !disabled) {
-        onClick(e)
-      }
-    },
-    500,
-    {
-      leading: true,
-      trailing: false,
-    },
-  )
-
-  return (
-    <Wrapper
-      onClick={handleClick}
-      disabled={disabled}
-      className={className}
-      style={style}
-      ref={buttonRef}
-      allowTransform={allowTransform}
-      allowOverlay={allowOverlay}
-    >
-      {children}
-      <OverlayBox className="overlayBox" allowTransform={allowTransform} />
-    </Wrapper>
-  )
-}
+    return (
+      <Wrapper
+        onClick={handleClick}
+        disabled={disabled}
+        className={className}
+        style={style}
+        ref={ref}
+        allowTransform={allowTransform}
+      >
+        {children}
+      </Wrapper>
+    )
+  },
+)
 
 export default Button

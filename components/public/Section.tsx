@@ -27,7 +27,7 @@ const Header = styled(Button)<{ isChildren: boolean }>`
   justify-content: space-between;
   align-items: center;
 
-  padding: 24px 22px ${({ isChildren }) => isChildren && '0 22px'};
+  padding: 24px 22px ${({ isChildren }) => isChildren && '11px 22px'};
 
   border-radius: 24px ${({ isChildren }) => isChildren && '24px 0 0'};
 
@@ -44,21 +44,27 @@ const HeaderText = styled.div`
   color: #fff;
 `
 
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  padding: 15px 12px 24px 12px;
+`
+
 const Section = ({ children, title }: HeaderProps) => {
   return (
     <Wrapper>
-      <Header isChildren={Boolean(children)} allowTransform={false}>
+      <Header
+        isChildren={Boolean(children)}
+        allowTransform={false}
+        onClick={() => {
+          //
+        }}
+      >
         <HeaderText>{title}</HeaderText>
-        <Button>
-          <Image
-            src={Arrow}
-            alt="arrow"
-            width={ARROW_SIZE}
-            height={ARROW_SIZE}
-          />
-        </Button>
+        <Image src={Arrow} alt="arrow" width={ARROW_SIZE} height={ARROW_SIZE} />
       </Header>
-      {children}
+      {children && <Content>{children}</Content>}
     </Wrapper>
   )
 }

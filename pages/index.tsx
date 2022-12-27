@@ -13,7 +13,7 @@ const Home: NextPage = () => {
         router,
       }}
     >
-      <Section title="주식" />
+      <Section title="주식">asdasd</Section>
       <Section title="마이페이지" />
     </Page>
   )
