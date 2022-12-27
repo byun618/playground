@@ -1,14 +1,16 @@
 import styled from '@emotion/styled'
-import type { CSSProperties, ReactNode } from 'react'
+import { ReactNode, useRef } from 'react'
 import { Header } from '.'
+import { HEADER_HEIGHT } from '../../lib/constants'
 import { HeaderProps } from './Header'
 
 interface PageProps {
   children: ReactNode
   header?: HeaderProps
   backgroundColor?: string
-  style?: CSSProperties
 }
+
+type ContentProps = Partial<PageProps> & { headerHeight: number }
 
 const Wrapper = styled.div`
   min-width: 100vw;
@@ -18,16 +20,22 @@ const Wrapper = styled.div`
   flex-direction: column;
 `
 
-const Content = styled.div<Partial<PageProps>>`
+const Content = styled.div<ContentProps>`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 
-  background-color: ${({ backgroundColor }) => backgroundColor};
+  /**
+   * @todo 필요시, full 옵션 추가
+   */
+  padding: 5px 15px;
+  margin-top: ${({ headerHeight }) => headerHeight}px;
 `
 
 const Page = (pageProps: PageProps) => {
-  const { children, header, backgroundColor = '#1c1c1e', style } = pageProps
+  const { children, header } = pageProps
+
+  const headerRef = useRef<HTMLInputElement>(null)
 
   return (
     <Wrapper>
@@ -39,7 +47,11 @@ const Page = (pageProps: PageProps) => {
           right={header.right}
         />
       )}
-      <Content style={style} backgroundColor={backgroundColor}>
+      <Content
+        headerHeight={
+          header ? headerRef.current?.clientHeight ?? HEADER_HEIGHT : 0
+        }
+      >
         {children}
       </Content>
     </Wrapper>

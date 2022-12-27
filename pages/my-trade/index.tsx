@@ -15,11 +15,7 @@ const Wrapper = styled.div`
 
 const MyTrade: NextPage = () => {
   return (
-    <Page
-      style={{
-        alignItems: 'center',
-      }}
-    >
+    <Page>
       <Wrapper>
         <Header />
         <MySymbols />

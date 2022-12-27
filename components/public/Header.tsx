@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { NextRouter } from 'next/router'
+import { HEADER_HEIGHT } from '../../lib/constants'
 import Logo from './Logo'
 
 type HeaderButtonTypes = 'back' | 'home'
@@ -18,7 +19,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
 
   width: 100%;
-  height: 48px;
+  height: ${HEADER_HEIGHT}px;
 
   position: fixed;
   overflow: hidden;

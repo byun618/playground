@@ -19,11 +19,7 @@ const Wrapper = styled.div`
 
 const Login: NextPage = () => {
   return (
-    <Page
-      style={{
-        alignItems: 'center',
-      }}
-    >
+    <Page>
       <Wrapper>
         <Header />
         <EmailInput />

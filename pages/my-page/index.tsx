@@ -28,11 +28,7 @@ const Contents = styled.div`
 
 const MyPage: NextPage = () => {
   return (
-    <Page
-      style={{
-        alignItems: 'center',
-      }}
-    >
+    <Page>
       <Wrapper>
         <Header />
         <Contents>
