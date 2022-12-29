@@ -1,6 +1,6 @@
 import Button from './Button'
 import Image from './Image'
-import LogoImage from '../../assets/png/logo.png'
+import LogoImage from '../../assets/png/playground.png'
 import { MouseEventHandler } from 'react'
 
 interface LogoProps {

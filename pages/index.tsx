@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { Page, Section } from '../components/public'
+import { Page } from '../components/public'
 import useToken from '../hooks/useToken'
 
 const Home: NextPage = () => {
@@ -12,9 +12,9 @@ const Home: NextPage = () => {
       header={{
         router,
       }}
+      full
     >
-      <Section title="주식">asdasd</Section>
-      <Section title="마이페이지" />
+      {token ? <>asdasd</> : <>asdasd</>}
     </Page>
   )
 }

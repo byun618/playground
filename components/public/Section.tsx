@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import type { ReactNode } from 'react'
 import Button from './Button'
 import Image from './Image'
-import Arrow from '../../assets/png/arrow.png'
+import ArrowRight from '../../assets/png/arrow-right.png'
 
 const ARROW_SIZE = 25
 
@@ -32,7 +32,7 @@ const Header = styled(Button)<{ isChildren: boolean }>`
   border-radius: 24px ${({ isChildren }) => isChildren && '24px 0 0'};
 
   :enabled:active {
-    background: rgba(97, 98, 109, 0.3) !important;
+    background: rgba(60, 60, 65, 0.5) !important;
   }
 `
 
@@ -62,7 +62,12 @@ const Section = ({ children, title }: HeaderProps) => {
         }}
       >
         <HeaderText>{title}</HeaderText>
-        <Image src={Arrow} alt="arrow" width={ARROW_SIZE} height={ARROW_SIZE} />
+        <Image
+          src={ArrowRight}
+          alt="arrow-right"
+          width={ARROW_SIZE}
+          height={ARROW_SIZE}
+        />
       </Header>
       {children && <Content>{children}</Content>}
     </Wrapper>

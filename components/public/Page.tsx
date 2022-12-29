@@ -6,7 +6,7 @@ import { HeaderProps } from './Header'
 
 interface PageProps {
   children: ReactNode
-  header?: HeaderProps
+  header?: Omit<HeaderProps, 'headerRef'>
   full?: boolean
   backgroundColor?: string
 }
@@ -15,7 +15,10 @@ type ContentProps = Partial<PageProps> & { headerHeight: number }
 
 const Wrapper = styled.div`
   min-width: 100vw;
-  min-height: 100vh;
+  /**
+   * @todo 상대적으로 변경하기
+   */
+  min-height: 664px;
 
   display: flex;
   flex-direction: column;
@@ -33,13 +36,14 @@ const Content = styled.div<ContentProps>`
 const Page = (pageProps: PageProps) => {
   const { children, header, full } = pageProps
 
-  const headerRef = useRef<HTMLInputElement>(null)
+  const headerRef = useRef<HTMLDivElement>(null)
 
   return (
     <Wrapper>
       {header && (
         <Header
           router={header.router}
+          headerRef={headerRef}
           title={header.title}
           left={header.left}
           right={header.right}

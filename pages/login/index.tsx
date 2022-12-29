@@ -1,31 +1,19 @@
-import styled from '@emotion/styled'
 import type { NextPage } from 'next'
-import {
-  EmailInput,
-  Footer,
-  Header,
-  PasswordInput,
-} from '../../components/login'
+import { useRouter } from 'next/router'
 import { Page } from '../../components/public'
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  padding: 100px 0;
-
-  width: 375px;
-`
-
 const Login: NextPage = () => {
+  const router = useRouter()
+
   return (
-    <Page>
-      <Wrapper>
-        <Header />
-        <EmailInput />
-        <PasswordInput />
-        <Footer />
-      </Wrapper>
+    <Page
+      header={{
+        router,
+        left: 'back',
+      }}
+      full
+    >
+      fhrmdls
     </Page>
   )
 }

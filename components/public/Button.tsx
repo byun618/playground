@@ -9,7 +9,7 @@ import React, {
 
 export interface ButtonProps {
   key?: string
-  onClick: MouseEventHandler<HTMLButtonElement>
+  onClick?: MouseEventHandler<HTMLButtonElement>
   children: ReactNode
   disabled?: boolean
   style?: object

@@ -1,15 +1,24 @@
 import styled from '@emotion/styled'
 import { NextRouter } from 'next/router'
+import { RefObject } from 'react'
 import { HEADER_HEIGHT } from '../../lib/constants'
+import Button from './Button'
 import Logo from './Logo'
+import ArrowLeft from '../../assets/png/arrow-left.png'
+import Image from './Image'
 
 type HeaderButtonTypes = 'back' | 'home'
 
 export interface HeaderProps {
   router: NextRouter
+  headerRef: RefObject<HTMLDivElement>
   title?: string
   left?: HeaderButtonTypes
   right?: HeaderButtonTypes
+}
+
+type HeaderButtonProps = {
+  rotateDeg?: number
 }
 
 const Wrapper = styled.div`
@@ -31,13 +40,70 @@ const Wrapper = styled.div`
   background-color: #1c1c1e;
 `
 
-/**
- * @todo 왼쪽 중앙 오른쪽 필요할 때 구현
- */
+const HeaderContent = styled.div`
+  min-width: 40px;
+  display: flex;
+  align-items: center;
+`
 
-const Header = ({ router, title, left, right }: HeaderProps) => {
+const Left = styled(HeaderContent)`
+  justify-content: flex-start;
+`
+
+const Center = styled.div`
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  font-size: 17px;
+  font-weight: 700;
+  text-align: center;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  padding: 0px 2px;
+`
+
+const Right = styled(HeaderContent)`
+  justify-content: flex-end;
+`
+
+const HeaderButton = styled(Button)<HeaderButtonProps>`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
+
+const Header = ({ router, headerRef, title, left, right }: HeaderProps) => {
+  const renderButtons = (type: HeaderButtonTypes) => {
+    switch (type) {
+      case 'back':
+        return (
+          <HeaderButton
+            onClick={() => {
+              router.back()
+            }}
+          >
+            <Image src={ArrowLeft} alt="back" width={40} height={40} />
+          </HeaderButton>
+        )
+    }
+  }
+
   return (
-    <Wrapper>{['/', '/login'].includes(router.asPath) && <Logo />}</Wrapper>
+    <Wrapper ref={headerRef}>
+      {router.asPath === '/' ? (
+        <Logo />
+      ) : (
+        <>
+          <Left>{left && renderButtons(left)}</Left>
+          <Center>{title}</Center>
+          <Right>{right && renderButtons(right)}</Right>
+        </>
+      )}
+    </Wrapper>
   )
 }
 
