@@ -1,6 +1,13 @@
+import styled from '@emotion/styled'
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { Page } from '../../components/public'
+import { EmailInput, LoginButton, PasswordInput } from '../../components/login'
+import { Logo, Page } from '../../components/public'
+
+const LogoContainer = styled.div`
+  padding-top: 50px;
+  padding-left: 19px;
+`
 
 const Login: NextPage = () => {
   const router = useRouter()
@@ -9,11 +16,17 @@ const Login: NextPage = () => {
     <Page
       header={{
         router,
+        title: '로그인',
         left: 'back',
       }}
       full
     >
-      fhrmdls
+      <LogoContainer>
+        <Logo />
+      </LogoContainer>
+      <EmailInput />
+      <PasswordInput />
+      <LoginButton />
     </Page>
   )
 }

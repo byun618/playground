@@ -3,48 +3,62 @@ import { InputHTMLAttributes } from 'react'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string
-  warning?: string
   isValid?: boolean
+  warning?: string
 }
 
 const Wrapper = styled.div``
 
 const Label = styled.div`
+  padding-bottom: 4px;
+
   font-weight: 400;
   font-size: 13px;
-  line-height: 16px;
+  line-height: 20px;
 
-  margin-bottom: 10px;
+  color: #b0b5bb;
 `
 
 const StyledInput = styled.input<Partial<InputProps>>`
-width: 100%;
+  width: 100%;
 
-font-size: 14px;
-line-height: 22px;
+  outline: none;
+  border: none;
 
-padding: 8px 0 8px 10px;
-margin: 0;
+  padding: 0;
+  padding-bottom: 8px;
 
-border: 1px solid
-  ${({ isValid }) => (isValid ? '#dfe1e3' : '#f65b65')};
+  border-radius: 0;
+  border-bottom: 2px solid ${({ isValid }) => (isValid ? '#61626d' : '#f65b65')};
 
-border-radius: 8px;
-outline: none;
+  background-color: rgba(255, 255, 255, 0);
 
-color: #4c5965;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  color: #fff;
 
-:focus {
-  border: 1px solid
-    ${({ isValid }) => (isValid ? '#4c8fce' : '#f65b65')};
+  :focus {
+    border-bottom: 2px solid ${({ isValid }) => (isValid ? '#fff' : '#f65b65')};
+
+    ::placeholder {
+      color: transparent;
+    }
+  }
+
+  ::placeholder {
+    color: #b5b9c2;
+  }
 `
 
 const Warning = styled.div<Partial<InputProps>>`
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 16px;
+  padding-top: 8px;
 
-  margin-top: 5px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+
+  letter-spacing: -0.01em;
 
   color: #f65b65;
 
@@ -58,7 +72,7 @@ const Input = (props: InputProps) => {
     <Wrapper>
       {label && <Label>{label}</Label>}
       <StyledInput {...props} isValid={isValid} />
-      {warning && <Warning isValid={isValid}>{warning}</Warning>}
+      {Boolean(warning) && <Warning isValid={isValid}>{warning}</Warning>}
     </Wrapper>
   )
 }

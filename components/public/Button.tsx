@@ -17,10 +17,6 @@ export interface ButtonProps {
   allowTransform?: boolean
 }
 
-interface OverlayBoxStyleType {
-  allowTransform?: boolean
-}
-
 const Wrapper = styled.button<Partial<ButtonProps>>`
   position: relative;
   display: flex;

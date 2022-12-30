@@ -35,7 +35,7 @@ const Wrapper = styled.div`
   z-index: 999;
   top: -1px;
 
-  padding: 8px 18px;
+  padding: 8px 12px;
 
   background-color: #1c1c1e;
 `
@@ -86,7 +86,7 @@ const Header = ({ router, headerRef, title, left, right }: HeaderProps) => {
               router.back()
             }}
           >
-            <Image src={ArrowLeft} alt="back" width={40} height={40} />
+            <Image src={ArrowLeft} alt="back" width={30} height={30} />
           </HeaderButton>
         )
     }
