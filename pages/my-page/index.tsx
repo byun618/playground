@@ -30,6 +30,7 @@ const MyPage: NextPage = () => {
   return (
     <Page>
       <Wrapper>
+        임시로 로그아웃만을 위해 기존꺼 사용. 추후에 수정
         <Header />
         <Contents>
           <LoginInfo />

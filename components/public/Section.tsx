@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import type { ReactNode } from 'react'
+import type { MouseEventHandler, ReactNode } from 'react'
 import Button from './Button'
 import Image from './Image'
 import ArrowRight from '../../assets/png/arrow-right.png'
@@ -8,6 +8,7 @@ const ARROW_SIZE = 25
 
 interface HeaderProps {
   children?: ReactNode
+  onClick?: MouseEventHandler<HTMLButtonElement>
   title: string
 }
 
@@ -51,15 +52,13 @@ const Content = styled.div`
   padding: 15px 12px 24px 12px;
 `
 
-const Section = ({ children, title }: HeaderProps) => {
+const Section = ({ children, onClick, title }: HeaderProps) => {
   return (
     <Wrapper>
       <Header
         isChildren={Boolean(children)}
         allowTransform={false}
-        onClick={() => {
-          //
-        }}
+        onClick={onClick}
       >
         <HeaderText>{title}</HeaderText>
         <Image
