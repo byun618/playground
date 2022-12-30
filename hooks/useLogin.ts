@@ -15,16 +15,18 @@ const useLogin = () => {
       router.replace('/')
     },
     onError: (err: any) => {
-      const message = '로그인에 실패하였습니다'
+      const errMessage = err.response?.data?.message
 
-      /**
-       * @todo api 수정후, 다시 적용
-       */
-      // const errMessage = err.response?.data?.message
-      // switch (errMessage) {
-      //   case 'INVALID_EMAIL':
-      //     message = '이메일 형식이 올바르지 않습니다'
-      // }
+      let message = '로그인에 실패하였습니다'
+      switch (errMessage) {
+        case 'invalid email':
+          message = '이메일 형식이 올바르지 않습니다'
+          break
+
+        case 'invalid password':
+          message = '비밀번호가 올바르지 않습니다'
+          break
+      }
 
       alert(message)
     },
