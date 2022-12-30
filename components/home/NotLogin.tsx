@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
 import LetsPlay from '../../assets/png/lets-play.png'
-import { Button, Image, Section } from '../public'
+import { Button, Image } from '../public'
 
 const ImageContainer = styled.div`
   display: flex;
