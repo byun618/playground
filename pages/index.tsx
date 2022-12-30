@@ -12,6 +12,7 @@ const Home: NextPage = () => {
     <Page
       header={{
         router,
+        left: 'logo',
       }}
       full
     >

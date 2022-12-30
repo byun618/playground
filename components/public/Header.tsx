@@ -7,7 +7,7 @@ import Logo from './Logo'
 import ArrowLeft from '../../assets/png/arrow-left.png'
 import Image from './Image'
 
-type HeaderButtonTypes = 'back' | 'home'
+type HeaderButtonTypes = 'logo' | 'back' | 'home'
 
 export interface HeaderProps {
   router: NextRouter
@@ -79,6 +79,15 @@ const HeaderButton = styled(Button)<HeaderButtonProps>`
 const Header = ({ router, headerRef, title, left, right }: HeaderProps) => {
   const renderButtons = (type: HeaderButtonTypes) => {
     switch (type) {
+      case 'logo':
+        return (
+          <Logo
+            onClick={() => {
+              router.replace('/')
+            }}
+          />
+        )
+
       case 'back':
         return (
           <HeaderButton
@@ -94,15 +103,9 @@ const Header = ({ router, headerRef, title, left, right }: HeaderProps) => {
 
   return (
     <Wrapper ref={headerRef}>
-      {router.asPath === '/' ? (
-        <Logo />
-      ) : (
-        <>
-          <Left>{left && renderButtons(left)}</Left>
-          <Center>{title}</Center>
-          <Right>{right && renderButtons(right)}</Right>
-        </>
-      )}
+      <Left>{left && renderButtons(left)}</Left>
+      <Center>{title}</Center>
+      <Right>{right && renderButtons(right)}</Right>
     </Wrapper>
   )
 }
