@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
+import { NotLogin } from '../components/home'
 import { Page } from '../components/public'
 import useToken from '../hooks/useToken'
 
@@ -14,7 +15,7 @@ const Home: NextPage = () => {
       }}
       full
     >
-      {token ? <>asdasd</> : <>asdasd</>}
+      {token ? <>asdasd</> : <NotLogin />}
     </Page>
   )
 }
