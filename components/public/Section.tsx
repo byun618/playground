@@ -49,7 +49,7 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
 
-  padding: 15px 12px 24px 12px;
+  padding: 0 12px 24px 12px;
 `
 
 const Section = ({ children, onClick, title }: HeaderProps) => {
