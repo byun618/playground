@@ -1,8 +1,7 @@
 import styled from '@emotion/styled'
 import type { MouseEventHandler, ReactNode } from 'react'
-import Button from './Button'
-import Image from './Image'
 import ArrowRight from '../../assets/png/arrow-right.png'
+import { Button, Image } from '../public'
 
 const ARROW_SIZE = 25
 

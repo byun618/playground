@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { CryptoSection, NotLogin } from '../components/home'
-import { Page, Section } from '../components/public'
+import { CryptoSection, NotLogin, Section } from '../components/home'
+import { Page } from '../components/public'
 import useToken from '../hooks/useToken'
 
 const Home: NextPage = () => {

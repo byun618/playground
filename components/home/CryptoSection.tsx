@@ -1,5 +1,5 @@
-import { Section } from '../public'
 import { Crypto } from './crypto-section'
+import { Section } from './'
 
 const CryptoSection = () => {
   return (
