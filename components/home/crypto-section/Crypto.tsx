@@ -1,7 +1,12 @@
 import styled from '@emotion/styled'
 import Temp from '../../../assets/png/temp.png'
+import { Crypto as CryptoType } from '../../../queries/users-me'
 import { Button, Image } from '../../public'
 import { CryptoNameVolume, CryptoPriceRate } from './'
+
+interface CryptoProps {
+  crypto: CryptoType
+}
 
 const Wrapper = styled(Button)`
   display: flex;
@@ -16,11 +21,11 @@ const Wrapper = styled(Button)`
   }
 `
 
-const Crypto = () => {
+const Crypto = ({ crypto }: CryptoProps) => {
   return (
     <Wrapper>
       <Image src={Temp} alt="temp" width={40} height={40} />
-      <CryptoNameVolume />
+      <CryptoNameVolume name={crypto.name} />
       <CryptoPriceRate />
     </Wrapper>
   )

@@ -1,10 +1,17 @@
-import { Crypto } from './crypto-section'
+import { Crypto as CryptoType } from '../../queries/users-me'
 import { Section } from './'
+import { Crypto } from './crypto-section'
 
-const CryptoSection = () => {
+interface CryptoSectionProps {
+  cryptos: CryptoType[]
+}
+
+const CryptoSection = ({ cryptos }: CryptoSectionProps) => {
   return (
     <Section title="암호화폐">
-      <Crypto />
+      {cryptos.map((crypto) => (
+        <Crypto key={`user-cryptos-${crypto.id}`} crypto={crypto} />
+      ))}
     </Section>
   )
 }

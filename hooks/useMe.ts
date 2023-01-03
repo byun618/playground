@@ -1,13 +1,6 @@
 import { useQuery } from 'react-query'
-import { fetchMe } from '../queries/users-me'
+import { fetchMe, Me } from '../queries/users-me'
 import useToken from './useToken'
-
-interface Me {
-  id: number
-  email: string
-  name?: string
-  phone?: string
-}
 
 const useMe = () => {
   const { token } = useToken()

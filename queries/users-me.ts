@@ -1,10 +1,18 @@
 import api from '../lib/api'
 
-interface Me {
+export interface Crypto {
+  id: number
+  ticker: string
+  name: string
+  imageUrl: string
+}
+
+export interface Me {
   id: number
   email: string
   name?: string
   phone?: string
+  cryptos: Crypto[]
 }
 
 export const fetchMe = async () => {

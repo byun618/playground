@@ -1,5 +1,9 @@
 import styled from '@emotion/styled'
 
+interface CryptoNameVolumeProps {
+  name: string
+}
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -22,10 +26,10 @@ const Volume = styled.div`
   line-height: 14px;
 `
 
-const CryptoNameVolume = () => {
+const CryptoNameVolume = ({ name }: CryptoNameVolumeProps) => {
   return (
     <Wrapper>
-      <Name>BTCUSDM</Name>
+      <Name>{name}</Name>
       <Volume>0.0001</Volume>
     </Wrapper>
   )
