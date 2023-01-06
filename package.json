@@ -13,6 +13,7 @@
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
     "axios": "^0.27.2",
+    "binance": "^2.2.9",
     "bootstrap": "^5.2.1",
     "lodash": "^4.17.21",
     "moment-timezone": "^0.5.37",

@@ -1,5 +1,11 @@
 import styled from '@emotion/styled'
 
+interface CryptoPriceRateProps {
+  price: number
+  rate: number
+  diff: number
+}
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -17,17 +23,33 @@ const Price = styled.div`
   line-height: 18px;
 `
 
-const Rate = styled.div`
+const Rate = styled.div<{ decrease: boolean }>`
   font-weight: 510;
   font-size: 12px;
   line-height: 14px;
+
+  color: ${({ decrease }) => (decrease ? '#d54155' : '#62c278')};
 `
 
-const CryptoPriceRate = () => {
+const CryptoPriceRate = ({
+  price = 0,
+  rate = 0,
+  diff = 0,
+}: CryptoPriceRateProps) => {
+  const transformNumber = (number: number) => {
+    return number.toLocaleString(undefined, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    })
+  }
+
   return (
     <Wrapper>
-      <Price>12,000원</Price>
-      <Rate>-120(9.2%)</Rate>
+      <Price>{transformNumber(price)}$</Price>
+      <Rate decrease={diff < 0 && rate < 0}>
+        {transformNumber(diff)}({transformNumber(rate)}
+        %)
+      </Rate>
     </Wrapper>
   )
 }
