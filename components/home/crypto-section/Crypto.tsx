@@ -37,8 +37,8 @@ const Crypto = ({ crypto }: CryptoProps) => {
     }
 
     const tempSocket = new WebsocketClient({
-      api_key: process.env.NEXT_PUBLIC_BINANCE_API_KEY,
-      api_secret: process.env.NEXT_PUBLIC_BINANCE_SECRET_KEY,
+      api_key: '',
+      api_secret: '',
       beautify: true,
       disableHeartbeat: true,
     })
